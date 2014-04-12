@@ -202,17 +202,6 @@
 
                     });
 
-                    if (options.backload !== undefined && options.live !== undefined) {
-                        var initValues = $(options.live).val();
-                        var rel = this.attr('rel');
-                        if (initValues != null) {
-                            initValues.forEach(function(value) {
-                                $(".zselect#" + rel + " ul li input:checkbox[value='" + value + "']").trigger('click');
-                            });
-                            refreshPlaceholder(rel, options.placeholder, options.selectedText);
-                        }
-                    }
-
                     if (options.filterResult === true)
                         $("div#" + rel + " ul li.filterResult").text(options.filterResultText + ' ' + show + '/' + tot);
 
@@ -246,6 +235,17 @@
                         $(".zselect#" + rel + " ul li input:checkbox[value='" + need[i] + "']").trigger('click');
 
                     }
+                    refreshPlaceholder(rel, options.placeholder, options.selectedText);
+                }
+            }
+
+            if (options.backload !== undefined && options.live !== undefined) {
+                var initValues = $(options.live).val();
+                var rel = this.attr('rel');
+                if (initValues != null) {
+                    initValues.forEach(function(value) {
+                        $(".zselect#" + rel + " ul li input:checkbox[value='" + value + "']").trigger('click');
+                    });
                     refreshPlaceholder(rel, options.placeholder, options.selectedText);
                 }
             }
